@@ -32,6 +32,16 @@ public class ExpressionEvaulatorTest {
         assertEquals(30,expEval.evaluate("( 60 / ( 10 / 5 ) )"));
     }
 
+    @Test
+    void sqrtOperatorTest(){
+        ExpressionEvaluator expEval = new ExpressionEvaluator();
+        assertEquals(5,expEval.evaluate("( 1 + ( sqrt 16 ) )"));
+    }
+
+
+
+
+
 
 
 
