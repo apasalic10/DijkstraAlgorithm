@@ -38,6 +38,35 @@ public class ExpressionEvaulatorTest {
         assertEquals(5,expEval.evaluate("( 1 + ( sqrt 16 ) )"));
     }
 
+    @Test
+    void IlegalArgumentTest(){
+        final ExpressionEvaluator expEval = new ExpressionEvaluator();
+        assertThrows(RuntimeException.class, () -> expEval.evaluate("( 60 / ( 10 / 0 ) )"), "Ilegalan argument za dijeljenje!" );
+    }
+
+    @Test
+    void IlegalArgumentTest1(){
+        final ExpressionEvaluator expEval = new ExpressionEvaluator();
+        assertThrows(RuntimeException.class, () -> expEval.evaluate("( 60 / ( 10x / 5 ) )"), "Unos nije validan!" );
+    }
+
+    @Test
+    void IlegalArgumentTest2(){
+        final ExpressionEvaluator expEval = new ExpressionEvaluator();
+        assertThrows(RuntimeException.class, () -> expEval.evaluate("( 1 + ( 5* 20))"), "Unos nije validan!" );
+    }
+
+    @Test
+    void IlegalArgumentTest3(){
+        final ExpressionEvaluator expEval = new ExpressionEvaluator();
+        assertThrows(RuntimeException.class, () -> expEval.evaluate("( 1 + ( 5 * 20 ) + ( 10 + 2 ) )"), "Unos nije validan!" );
+    }
+
+
+
+
+
+
 
 
 
