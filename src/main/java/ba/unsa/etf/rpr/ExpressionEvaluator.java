@@ -28,21 +28,27 @@ public class ExpressionEvaluator {
                     double a =operands.pop();
                     double b = operands.pop();
 
-                    if(operacija.equals("+")){
-                        double rez = a + b;
-                        operands.push(rez);
-                    }
-                    else if(operacija.equals("-")){
-                        double rez = a - b;
-                        operands.push(rez);
-                    }
-                    else if(operacija.equals("*")){
-                        double rez = a * b;
-                        operands.push(rez);
-                    }
-                    else if(operacija.equals("/")){
-                        double rez = a / b;
-                        operands.push(rez);
+                    switch (operacija) {
+                        case "+": {
+                            double rez = a + b;
+                            operands.push(rez);
+                            break;
+                        }
+                        case "-": {
+                            double rez = a - b;
+                            operands.push(rez);
+                            break;
+                        }
+                        case "*": {
+                            double rez = a * b;
+                            operands.push(rez);
+                            break;
+                        }
+                        case "/": {
+                            double rez = a / b;
+                            operands.push(rez);
+                            break;
+                        }
                     }
 
                 }
