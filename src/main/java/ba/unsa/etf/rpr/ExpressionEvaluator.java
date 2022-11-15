@@ -35,7 +35,7 @@ public class ExpressionEvaluator {
                             break;
                         }
                         case "-": {
-                            double rez = a - b;
+                            double rez = b - a;
                             operands.push(rez);
                             break;
                         }
@@ -45,7 +45,10 @@ public class ExpressionEvaluator {
                             break;
                         }
                         case "/": {
-                            double rez = a / b;
+                            if(a == 0){
+                                throw new RuntimeException("Ilegalan argument za dijeljenje!");
+                            }
+                            double rez = b / a;
                             operands.push(rez);
                             break;
                         }
