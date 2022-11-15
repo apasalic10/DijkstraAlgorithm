@@ -4,8 +4,8 @@ import java.util.Stack;
 
 public class ExpressionEvaluator {
 
-    Stack<String> operators = new Stack<String>();
-    Stack<Double> operands = new Stack<Double>();
+     private final Stack<String> operators = new Stack<String>();
+     private final Stack<Double> operands = new Stack<Double>();
 
     private boolean isBinaryOperator(String str){
         return str.equals("+") || str.equals("-") || str.equals("*") || str.equals("/");
@@ -15,7 +15,7 @@ public class ExpressionEvaluator {
         return str.equals("sqrt");
     }
 
-    public Double evaluate(String str){
+    public Double evaluate(String str) throws RuntimeException{
         String[] splits = str.split(" ");
 
         for(String x : splits){
@@ -69,6 +69,10 @@ public class ExpressionEvaluator {
                     throw new RuntimeException("Unos nije validan!");
                 }
             }
+        }
+
+        if(!operators.isEmpty() || operands.size() != 1){
+            throw new RuntimeException("Unos nije validan!");
         }
 
         return operands.pop();
