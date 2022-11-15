@@ -26,6 +26,12 @@ public class ExpressionEvaulatorTest {
         assertEquals(60,expEval.evaluate("( 10 * ( 3 * 2 ) )"));
     }
 
+    @Test
+    void divisionOperatorTest(){
+        ExpressionEvaluator expEval = new ExpressionEvaluator();
+        assertEquals(30,expEval.evaluate("( 60 / ( 10 / 5 ) )"));
+    }
+
 
 
 
