@@ -62,6 +62,12 @@ public class ExpressionEvaulatorTest {
         assertThrows(RuntimeException.class, () -> expEval.evaluate("( 1 + ( 5 * 20 ) + ( 10 + 2 ) )"), "Unos nije validan!" );
     }
 
+    @Test
+    void IlegalArgumentTest4(){
+        final ExpressionEvaluator expEval = new ExpressionEvaluator();
+        assertThrows(RuntimeException.class, () -> expEval.evaluate(null), "Uneseni string je prazan!" );
+    }
+
 
 
 

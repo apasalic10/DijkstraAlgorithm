@@ -16,68 +16,73 @@ public class ExpressionEvaluator {
     }
 
     public Double evaluate(String str) throws RuntimeException{
-        String[] splits = str.split(" ");
+       try{
+           String[] splits = str.split(" ");
 
-        for(String x : splits){
-            if(x.equals("(")) {}
-            else if(x.equals(")")){
+           for(String x : splits){
+               if(x.equals("(")) {}
+               else if(x.equals(")")){
 
-                String operacija = operators.pop();
-                if(isBinaryOperator(operacija)){
+                   String operacija = operators.pop();
+                   if(isBinaryOperator(operacija)){
 
-                    double a =operands.pop();
-                    double b = operands.pop();
+                       double a =operands.pop();
+                       double b = operands.pop();
 
-                    switch (operacija) {
-                        case "+": {
-                            double rez = a + b;
-                            operands.push(rez);
-                            break;
-                        }
-                        case "-": {
-                            double rez = b - a;
-                            operands.push(rez);
-                            break;
-                        }
-                        case "*": {
-                            double rez = a * b;
-                            operands.push(rez);
-                            break;
-                        }
-                        case "/": {
-                            if(a == 0){
-                                throw new RuntimeException("Ilegalan argument za dijeljenje!");
-                            }
-                            double rez = b / a;
-                            operands.push(rez);
-                            break;
-                        }
-                    }
+                       switch (operacija) {
+                           case "+": {
+                               double rez = a + b;
+                               operands.push(rez);
+                               break;
+                           }
+                           case "-": {
+                               double rez = b - a;
+                               operands.push(rez);
+                               break;
+                           }
+                           case "*": {
+                               double rez = a * b;
+                               operands.push(rez);
+                               break;
+                           }
+                           case "/": {
+                               if(a == 0){
+                                   throw new RuntimeException("Ilegalan argument za dijeljenje!");
+                               }
+                               double rez = b / a;
+                               operands.push(rez);
+                               break;
+                           }
+                       }
 
-                }
-                else{
-                    double a =operands.pop();
-                    double rez = Math.sqrt(a);
-                    operands.push(rez);
-                }
-            }
-            else if(isBinaryOperator(x) || isUnaryOperator(x)){
-                operators.push(x);
-            }
-            else{
-                try{
-                    operands.push(Double.parseDouble(x));
-                }
-                catch (NumberFormatException e){
-                    throw new RuntimeException("Unos nije validan!");
-                }
-            }
-        }
+                   }
+                   else{
+                       double a =operands.pop();
+                       double rez = Math.sqrt(a);
+                       operands.push(rez);
+                   }
+               }
+               else if(isBinaryOperator(x) || isUnaryOperator(x)){
+                   operators.push(x);
+               }
+               else{
+                   try{
+                       operands.push(Double.parseDouble(x));
+                   }
+                   catch (NumberFormatException e){
+                       throw new RuntimeException("Unos nije validan!");
+                   }
+               }
+           }
 
-        if(!operators.isEmpty() || operands.size() != 1){
-            throw new RuntimeException("Unos nije validan!");
-        }
+           if(!operators.isEmpty() || operands.size() != 1){
+               throw new RuntimeException("Unos nije validan!");
+           }
 
-        return operands.pop();
+           return operands.pop();
+       }
+       catch (NullPointerException e){
+           throw new RuntimeException("Uneseni string je prazan!");
+       }
     }
 }
