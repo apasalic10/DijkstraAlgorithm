@@ -1,7 +1,14 @@
 package ba.unsa.etf.rpr;
 
+/**
+ * App is the main class of the project
+ */
 public class App 
 {
+    /**
+     * main method of the project
+     * @param args is array of strings sent from cmd, of which the first string is calculated via ExpressionEvaluator
+     */
     public static void main( String[] args )
     {
         try{

@@ -2,19 +2,48 @@ package ba.unsa.etf.rpr;
 
 import java.util.Stack;
 
+/**
+ * the class in which the expression is evaluated
+ */
 public class ExpressionEvaluator {
 
-     private final Stack<String> operators = new Stack<String>();
-     private final Stack<Double> operands = new Stack<Double>();
+    /**
+     * attribute that preserves operators from expressions
+     */
+    private final Stack<String> operators = new Stack<>();
 
+    /**
+     * attribute that preserves operands from expressions
+     */
+    private final Stack<Double> operands = new Stack<>();
+
+    /**
+     * method that checks if a binary operator
+     * @param str is the string to be checked
+     * @return true or false depending on whether the string parameter is a binary operator
+     */
     private boolean isBinaryOperator(String str){
         return str.equals("+") || str.equals("-") || str.equals("*") || str.equals("/");
     }
 
+    /**
+     * method that checks if a unary operator
+     * @param str is the string to be checked
+     * @return true or false depending on whether the string parameter is a binary operator
+     */
     private boolean isUnaryOperator(String str){
         return str.equals("sqrt");
     }
 
+    /**
+     * method that calculates the given string
+     * @param str is the expression calculated by the method
+     * @return the result of the expression
+     * @throws RuntimeException if the input string is not entered correctly
+     * ,if an expression containing division by zero is entered and
+     * if the expression being evaluated is null
+     *
+     */
     public Double evaluate(String str) throws RuntimeException{
        try{
            String[] splits = str.split(" ");
