@@ -13,7 +13,8 @@ public class App
     {
         try{
             ExpressionEvaluator expEval = new ExpressionEvaluator();
-            System.out.println(Math.round(expEval.evaluate(args[0]) * 100. )/100.);
+            double rezultat = Math.round(expEval.evaluate(args[0]) * 100. )/100.;
+            System.out.println("Rezultat unesenog izraza je: " + rezultat);
         }
         catch (RuntimeException e ){
             System.out.println(e.getMessage());
