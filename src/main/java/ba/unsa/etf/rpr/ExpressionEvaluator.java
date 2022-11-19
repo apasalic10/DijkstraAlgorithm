@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
@@ -45,13 +46,18 @@ public class ExpressionEvaluator {
      *
      */
     public Double evaluate(String str) throws RuntimeException{
+        int brojOtvorenih = 0;
+        int brojZatvorenih = 0;
        try{
            String[] splits = str.split(" ");
 
-           for(String x : splits){
-               if(x.equals("(")) {}
-               else if(x.equals(")")){
-
+           for(int i = 0; i< splits.length; i++){
+               if(splits[i].equals("(")) {brojOtvorenih++;}
+               else if(isUnaryOperator(splits[i]) && !splits[i+1].equals("(")) {
+                   throw new RuntimeException("Unos nije validan!");
+               } else if(splits[i].equals(")")){
+                   brojZatvorenih++;
+                   if(operators.isEmpty()) continue;
                    String operacija = operators.pop();
                    if(isBinaryOperator(operacija)){
 
@@ -91,12 +97,12 @@ public class ExpressionEvaluator {
                        operands.push(rez);
                    }
                }
-               else if(isBinaryOperator(x) || isUnaryOperator(x)){
-                   operators.push(x);
+               else if(isBinaryOperator(splits[i]) || isUnaryOperator(splits[i])){
+                   operators.push(splits[i]);
                }
                else{
                    try{
-                       operands.push(Double.parseDouble(x));
+                       operands.push(Double.parseDouble(splits[i]));
                    }
                    catch (NumberFormatException e){
                        throw new RuntimeException("Unos nije validan!");
@@ -107,11 +113,17 @@ public class ExpressionEvaluator {
            if(!operators.isEmpty() || operands.size() != 1){
                throw new RuntimeException("Unos nije validan!");
            }
+           else if(brojOtvorenih != brojZatvorenih){
+               throw new RuntimeException("Unos nije validan!");
+           }
 
            return operands.pop();
        }
        catch (NullPointerException e){
            throw new RuntimeException("Uneseni string je prazan!");
+       }
+       catch(EmptyStackException e){
+           throw new RuntimeException("Unos nije validan!");
        }
     }
 }

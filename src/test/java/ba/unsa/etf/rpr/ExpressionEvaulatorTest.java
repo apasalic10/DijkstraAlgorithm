@@ -52,14 +52,14 @@ public class ExpressionEvaulatorTest {
     @Test
     void sqrtOperatorTest(){
         ExpressionEvaluator expEval = new ExpressionEvaluator();
-        assertEquals(5,expEval.evaluate("( 1 + ( sqrt 16 ) )"));
+        assertEquals(5,expEval.evaluate("( 1 + sqrt ( 16 ) )"));
     }
 
     /**
      * method that tests whether the "evaluate" method throws an exception if division by zero occurs
      */
     @Test
-    void IlegalArgumentTest(){
+    void ilegalArgumentTest(){
         final ExpressionEvaluator expEval = new ExpressionEvaluator();
         assertThrows(RuntimeException.class, () -> expEval.evaluate("( 60 / ( 10 / 0 ) )"), "Ilegalan argument za dijeljenje!" );
     }
@@ -68,7 +68,7 @@ public class ExpressionEvaulatorTest {
      * method that tests whether the "evaluate" method throws an exception if the input isn't valid
      */
     @Test
-    void IlegalArgumentTest1(){
+    void invalidInput(){
         final ExpressionEvaluator expEval = new ExpressionEvaluator();
         assertThrows(RuntimeException.class, () -> expEval.evaluate("( 60 / ( 10x / 5 ) )"), "Unos nije validan!" );
     }
@@ -77,7 +77,7 @@ public class ExpressionEvaulatorTest {
      * method that tests whether the "evaluate" method throws an exception if the input isn't valid
      */
     @Test
-    void IlegalArgumentTest2(){
+    void invalidInput1(){
         final ExpressionEvaluator expEval = new ExpressionEvaluator();
         assertThrows(RuntimeException.class, () -> expEval.evaluate("( 1 + ( 5 * 20))"), "Unos nije validan!" );
     }
@@ -86,7 +86,7 @@ public class ExpressionEvaulatorTest {
      * method that tests whether the "evaluate" method throws an exception if the input isn't valid
      */
     @Test
-    void IlegalArgumentTest3(){
+    void invalidInput2(){
         final ExpressionEvaluator expEval = new ExpressionEvaluator();
         assertThrows(RuntimeException.class, () -> expEval.evaluate("( 1 + ( 5 * 20 ) + ( 10 + 2 ) )"), "Unos nije validan!" );
     }
@@ -95,10 +95,18 @@ public class ExpressionEvaulatorTest {
      * method that tests whether the "evaluate" method throws an exception if the input is null
      */
     @Test
-    void IlegalArgumentTest4(){
+    void ilegalArgumentTest2(){
         final ExpressionEvaluator expEval = new ExpressionEvaluator();
         assertThrows(RuntimeException.class, () -> expEval.evaluate(null), "Uneseni string je prazan!" );
     }
+
+    @Test
+    void invalidInputSqrt(){
+        final ExpressionEvaluator expEval = new ExpressionEvaluator();
+        assertThrows(RuntimeException.class, () -> expEval.evaluate("( 1 + sqrt 3 )"), "Unos nije validan!" );
+    }
+
+
 
 
 
