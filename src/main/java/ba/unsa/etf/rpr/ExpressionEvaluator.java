@@ -51,11 +51,18 @@ public class ExpressionEvaluator {
        try{
            String[] splits = str.split(" ");
 
+           if(!splits[0].equals("(")){
+               throw new RuntimeException("Unos nije validan!");
+           }
+
            for(int i = 0; i< splits.length; i++){
-               if(splits[i].equals("(")) {brojOtvorenih++;}
+               if(splits[i].equals("(")) {
+                   brojOtvorenih++;
+               }
                else if(isUnaryOperator(splits[i]) && !splits[i+1].equals("(")) {
                    throw new RuntimeException("Unos nije validan!");
-               } else if(splits[i].equals(")")){
+               }
+               else if(splits[i].equals(")")){
                    brojZatvorenih++;
                    if(operators.isEmpty()) continue;
                    String operacija = operators.pop();
