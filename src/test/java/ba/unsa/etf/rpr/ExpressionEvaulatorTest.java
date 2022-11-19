@@ -100,6 +100,9 @@ public class ExpressionEvaulatorTest {
         assertThrows(RuntimeException.class, () -> expEval.evaluate(null), "Uneseni string je prazan!" );
     }
 
+    /**
+     * method that tests whether the "evaluate" method throws an exception if the input isn't valid
+     */
     @Test
     void invalidInputSqrt(){
         final ExpressionEvaluator expEval = new ExpressionEvaluator();
